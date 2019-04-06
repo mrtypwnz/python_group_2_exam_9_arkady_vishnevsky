@@ -4,8 +4,9 @@ from rest_framework.authtoken.models import Token
 from rest_framework.generics import CreateAPIView
 from django.contrib.auth.models import User
 from rest_framework.permissions import AllowAny
-from api_v1.serializers import UserSerializer
-
+from rest_framework import viewsets
+from webapp.models import Product, Photo, Category, Order
+from api_v1.serializers import UserSerializer, ProductSerializer, CategorySerializer, OrderSerializer, PhotoSerializer
 
 class LoginView(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
@@ -26,3 +27,24 @@ class UserCreateView(CreateAPIView):
     model = User
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+
+class PhotoViewSet(viewsets.ModelViewSet):
+    queryset = Photo.objects.all().order_by('id')
+    serializer_class = PhotoSerializer
+
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all().order_by('id')
+    serializer_class = ProductSerializer
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all().order_by('id')
+    serializer_class = OrderSerializer
+
+

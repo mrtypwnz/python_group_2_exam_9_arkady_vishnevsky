@@ -1,5 +1,60 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from webapp.models import Product, Photo, Category, Order
+
+
+class PhotoSerializer(serializers.ModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='api:photo-detail')
+    product_name = serializers.SerializerMethodField(read_only=True)
+
+    def get_product_name(self, photo):
+        return photo.product.name
+
+    class Meta:
+        model = Photo
+        fields = ('url', 'id', 'photo', 'product', 'product_name')
+
+
+class InlinePhotoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Photo
+        fields = ('id', 'product', 'photo')
+
+
+class InlineCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('id', 'name', 'description')
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='api:product-detail')
+    photos = InlinePhotoSerializer(many=True, read_only=True)
+    categories = InlineCategorySerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Product
+        fields = ('url', 'id', 'categories', 'name', 'description', 'release_date', 'price', 'photos')
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='api:category-detail')
+
+    class Meta:
+        model = Category
+        fields = ('url', 'name', 'description')
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='api:order-detail')
+    user_name = serializers.SerializerMethodField(read_only=True)
+
+    def get_user_name(self, order):
+        return order.user.username
+
+    class Meta:
+        model = Order
+        fields = ('url', 'user', 'product', 'phone', 'address', 'comment', 'created')
 
 
 class UserSerializer(serializers.ModelSerializer):
