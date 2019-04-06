@@ -16,7 +16,7 @@ class InlineCategorySerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='api:product-detail')
+    url = serializers.HyperlinkedIdentityField(view_name='api_v1:product-detail')
     photos = InlinePhotoSerializer(many=True, read_only=True)
     categories = InlineCategorySerializer(many=True, read_only=True)
 
@@ -25,7 +25,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = ('url', 'id', 'categories', 'name', 'description', 'release_date', 'price', 'photos')
 
 class PhotoSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='api:photo-detail')
+    url = serializers.HyperlinkedIdentityField(view_name='api_v1:photo-detail')
     product_name = serializers.SerializerMethodField(read_only=True)
 
     def get_product_name(self, photo):
@@ -37,7 +37,7 @@ class PhotoSerializer(serializers.ModelSerializer):
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='api:category-detail')
+    url = serializers.HyperlinkedIdentityField(view_name='api_v1:category-detail')
 
     class Meta:
         model = Category
@@ -45,7 +45,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='api:order-detail')
+    url = serializers.HyperlinkedIdentityField(view_name='api_v1:order-detail')
     user_name = serializers.SerializerMethodField(read_only=True)
 
     def get_user_name(self, order):

@@ -16,13 +16,14 @@ class ProductDetail extends Component {
             <div className="jumbotron">
                 <div className="container">
                     <h1 className="display-4">{this.props.products.name}</h1>
-                    <span className='badge badge-danger m-2'>Description</span>
+                    <span className='m-2'>Description:</span>
                     <p className="lead">{this.props.products.description}</p>
                     <p className='display-4 font-weight-bolder'>Photo</p>
                     {this.props.products.photos.map((photo, id) => <img className='product_image' src={photo.photo} alt='product' key={id}/>)}
                 </div>
+                <NavLink to='#' className="price_btn btn btn-primary">{this.props.products.price}$</NavLink>
+
             </div>
-            <NavLink to='/' className="btn btn-primary">some text</NavLink>
         </div>;
     }
 }
