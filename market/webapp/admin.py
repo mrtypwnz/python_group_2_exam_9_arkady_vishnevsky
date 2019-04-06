@@ -1,11 +1,6 @@
 from django.contrib import admin
 from webapp.models import Product, Photo, Category, Order
 
-#
-# class MovieAdmin(admin.ModelAdmin):
-#     list_display = ['pk', 'name']
-#     search_fields = ['name', 'id']
-
 
 class ProductAdmin(admin.ModelAdmin):
     filter_horizontal = ('categories',)

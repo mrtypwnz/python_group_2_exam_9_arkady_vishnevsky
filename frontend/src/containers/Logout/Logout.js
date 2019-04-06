@@ -10,7 +10,7 @@ class Logout extends Component {
         this.props.history.replace('/');
     };
 
-    render() { return <h2>Выход</h2>; }
+    render() { return <h2>Logout</h2>; }
 }
 
 

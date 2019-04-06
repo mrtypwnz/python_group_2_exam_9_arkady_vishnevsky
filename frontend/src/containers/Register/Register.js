@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {LOGIN_URL, REGISTER_URL} from "../../api_urls";
+import {LOGIN_URL, REGISTER_URL} from "../../api-urls";
 import axios from 'axios';
 
 
@@ -33,9 +33,6 @@ class Register extends Component {
     };
 
 
-    // Этот код все равно нужен,
-    // т.к. совпадение паролей требуется проверять и перед отправкой запроса
-    // иначе даже при наличии ошибки "Пароли не совпадают", форма все равно может быть отправлена
     passwordsMatch = () => {
         const {password, passwordConfirm} = this.state.user;
         return password === passwordConfirm
@@ -93,23 +90,23 @@ class Register extends Component {
     render() {
         const {username, password, passwordConfirm, email} = this.state.user;
         return <Fragment>
-            <h2>Регистрация</h2>
+            <h2>Sign in</h2>
             <form onSubmit={this.formSubmitted}>
                 {this.showErrors('non_field_errors')}
                 <div className="form-row">
-                    <label className="font-weight-bold">Имя пользователя</label>
+                    <label className="font-weight-bold">Username</label>
                     <input type="text" className="form-control" name="username" value={username}
                            onChange={this.inputChanged}/>
                     {this.showErrors('username')}
                 </div>
                 <div className="form-row">
-                    <label className="font-weight-bold">Пароль</label>
+                    <label className="font-weight-bold">Password</label>
                     <input type="password" className="form-control" name="password" value={password}
                            onChange={this.inputChanged}/>
                     {this.showErrors('password')}
                 </div>
                 <div className="form-row">
-                    <label className="font-weight-bold">Подтверждение пароля</label>
+                    <label className="font-weight-bold">Confirm password</label>
                     <input type="password" className="form-control" name="passwordConfirm" value={passwordConfirm}
                            onChange={this.passwordConfirmChange}/>
                     {this.showErrors('passwordConfirm')}
@@ -120,7 +117,7 @@ class Register extends Component {
                            onChange={this.inputChanged}/>
                     {this.showErrors('email')}
                 </div>
-                <button type="submit" className="btn btn-primary mt-2">Зарегистрироваться</button>
+                <button type="submit" className="btn btn-primary mt-2">Sign in</button>
             </form>
         </Fragment>
     }

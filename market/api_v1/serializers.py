@@ -3,18 +3,6 @@ from django.contrib.auth.models import User
 from webapp.models import Product, Photo, Category, Order
 
 
-class PhotoSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='api:photo-detail')
-    product_name = serializers.SerializerMethodField(read_only=True)
-
-    def get_product_name(self, photo):
-        return photo.product.name
-
-    class Meta:
-        model = Photo
-        fields = ('url', 'id', 'photo', 'product', 'product_name')
-
-
 class InlinePhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
@@ -35,6 +23,17 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ('url', 'id', 'categories', 'name', 'description', 'release_date', 'price', 'photos')
+
+class PhotoSerializer(serializers.ModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='api:photo-detail')
+    product_name = serializers.SerializerMethodField(read_only=True)
+
+    def get_product_name(self, photo):
+        return photo.product.name
+
+    class Meta:
+        model = Photo
+        fields = ('url', 'id', 'photo', 'product', 'product_name')
 
 
 class CategorySerializer(serializers.ModelSerializer):
