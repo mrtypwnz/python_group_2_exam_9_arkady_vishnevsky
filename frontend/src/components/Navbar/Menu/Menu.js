@@ -22,16 +22,16 @@ class Menu extends Component {
             <div className={(this.state.collapse ? "collapse" : "") + " navbar-collapse"}
                  id="navbarNav">
                 <ul className="navbar-nav mr-auto">
-                    <MenuItem to="/">Главная</MenuItem>
+                    <MenuItem to="/">Home</MenuItem>
                 </ul>
 
                 <ul className="navbar-nav ml-auto">
                 {username ? [
                     <li className="nav-item" key="username"><span className="navbar-text">Привет, {username}!</span></li>,
-                    <MenuItem to="/logout" key="logout">Выйти</MenuItem>
+                    <MenuItem to="/logout" key="logout">logout</MenuItem>
                 ] : [
-                    <MenuItem to="/login" key="login">Войти</MenuItem>,
-                    <MenuItem to="/register" key="register">Зарегистрироваться</MenuItem>
+                    <MenuItem to="/login" key="login">log in</MenuItem>,
+                    <MenuItem to="/register" key="register">sign in</MenuItem>
                 ]}
             </ul>
 

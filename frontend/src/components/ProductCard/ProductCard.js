@@ -5,7 +5,7 @@ const ProductCard = props => {
     const {name, id, photos, description, price} = props.product;
 
     const link = {
-        text: 'Описание',
+        text: 'description',
         url: '/products/' + id
     };
 

@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
-import {LOGIN_URL} from "../../api-urls";
 import axios from 'axios';
+import {LOGIN_URL} from "../../api-urls";
+
 
 
 class Login extends Component {
