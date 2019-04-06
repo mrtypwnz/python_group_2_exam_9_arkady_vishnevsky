@@ -1,0 +1,18 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {# имитация клиентского приложения на JS #}
+    <h2>Вызовите в консоли функцию:</h2>
+    <p>getMovies() - чтобы получить список фильмов</p>
+    <p>postMovie("Name") - чтобы создать фильм с именем Name</p>
+    <p><a href="{% url 'admin:index' %}">Админка</a> <a href="/api/v1">API</a> <a href="http://localhost:3000">Клиент</a></p>
+</body>
+</html>
