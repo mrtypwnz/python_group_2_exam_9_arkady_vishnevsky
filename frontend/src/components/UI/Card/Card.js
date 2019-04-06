@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
-import "Card.css"
+import "./Card.css"
 
 
 const Card = props => {
